@@ -1,5 +1,16 @@
 object Euler {
-    def euler001() {
+    def gcd(a: Long, b: Long): Long = {
+        if (a < b) gcd(b,a)
+        else if (b == 0)  a
+        else gcd(a-b, b) 
+    }
+
+    // least common multiple
+    def lcm(a: Long, b: Long)= {
+        a*b/gcd(a,b)
+    } 
+
+    def euler001() = {
       val rg = List.range(1,1000) 
       println (rg.filter(x => x%3==0 || x%5 ==0).reduce(_+_))
     }
@@ -15,9 +26,12 @@ object Euler {
       val a = List.range(100,1000)
       println ((for { i<- a; j<-a} yield i*j) filter(x=>x.toString==x.toString.reverse) max)
     }
+    def euler005() {
+      println (List.range(2L,21L).reduce(lcm(_,_)))
+    }
     def main(args: Array[String]) {
         var a = System.currentTimeMillis()
-        euler002()
+        euler005()
         println ("time elapsed: " + (System.currentTimeMillis()-a) + " millisec")
     }
 }
