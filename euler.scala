@@ -12,26 +12,32 @@ object Euler {
 
     def euler001() = {
       val rg = List.range(1,1000) 
-      println (rg.filter(x => x%3==0 || x%5 ==0).reduce(_+_))
+      rg.filter(x => x%3==0 || x%5 ==0).reduce(_+_)
     }
-    def euler002() {
+    def euler002() = {
       var a = 1; var b = 1; var c = 2; var sum = 0
       while (c <= 4000000) {
           sum = sum +c
           a = b+c; b = c+a; c=a+b; 
       }
-      println (sum)
+      sum
     }
-    def euler004() {
+    def euler004() = {
       val a = List.range(100,1000)
-      println ((for { i<- a; j<-a} yield i*j) filter(x=>x.toString==x.toString.reverse) max)
+      (for { i<- a; j<-a} yield i*j) filter(x=>x.toString==x.toString.reverse) max
     }
-    def euler005() {
-      println (List.range(2L,21L).reduce(lcm(_,_)))
+    def euler005() = {
+      List.range(2L,21L).reduce(lcm(_,_))
+    }
+    def euler006() = {
+      val n = 100
+      val l = List.range(1,n+1)
+      l.sum * l.sum - l.map(x=>x*x).sum
     }
     def main(args: Array[String]) {
         var a = System.currentTimeMillis()
-        euler005()
+        println (euler006())
         println ("time elapsed: " + (System.currentTimeMillis()-a) + " millisec")
+        println (List.range(1,10).sum)
     }
 }
