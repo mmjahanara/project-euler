@@ -36,8 +36,7 @@ object Euler {
     }
     def main(args: Array[String]) {
         var a = System.currentTimeMillis()
-        println (euler006())
+        println (euler002())
         println ("time elapsed: " + (System.currentTimeMillis()-a) + " millisec")
-        println (List.range(1,10).sum)
     }
 }

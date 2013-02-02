@@ -11,6 +11,15 @@ def gcd(a,b):
 def lcm(a,b):
     return a*b/gcd(a,b)
 
+def euler002():
+    a,b,c,sum = 1,1,2,0
+    while (c <= 4000000):
+      sum += c
+      a = b+c
+      b = c+a
+      c = a+b
+    return sum
+
 def euler004():
     return max(filter(lambda x: str(x)==str(x)[::-1], (x*y for x in range(100,1000) for y in range(100, 1000)) ))
 
@@ -24,6 +33,6 @@ def euler006():
 
 if __name__ == '__main__' :
     a = time.time()
-    print euler006()
-    print "time elapsed: %f sec" % (time.time()-a)
+    print euler002()
+    print "time elapsed: %f millisec" % ((time.time()-a)*1000)
 
