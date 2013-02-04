@@ -31,8 +31,13 @@ def euler006():
     l = range(1,n+1)
     return sum(l)*sum(l)-sum(x*x for x in l)
 
+def euler013():
+    with open('data/13.txt', 'r') as f:
+        lst = f.readlines()
+    return str(reduce(lambda x,y: x+y, (int(x) for x in lst)))[:10]
+
 if __name__ == '__main__' :
     a = time.time()
-    print euler002()
+    print euler013()
     print "time elapsed: %f millisec" % ((time.time()-a)*1000)
 

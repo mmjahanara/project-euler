@@ -34,9 +34,13 @@ object Euler {
       val l = List.range(1,n+1)
       l.sum * l.sum - l.map(x=>x*x).sum
     }
+    def euler013() = {
+      val text = scala.io.Source.fromFile("data/13.txt");
+      text.getLines().map(new java.math.BigInteger(_)).reduce(_.add(_)).toString().take(10)
+    }
     def main(args: Array[String]) {
         var a = System.currentTimeMillis()
-        println (euler002())
+        println (euler013())
         println ("time elapsed: " + (System.currentTimeMillis()-a) + " millisec")
     }
 }
