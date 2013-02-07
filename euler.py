@@ -33,6 +33,6 @@ def euler006():
 
 if __name__ == '__main__' :
     a = time.time()
-    print euler002()
+    print euler005()
     print "time elapsed: %f millisec" % ((time.time()-a)*1000)
 
