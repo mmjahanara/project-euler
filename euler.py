@@ -46,14 +46,33 @@ def euler015():
 def euler016():
     return sum_of_digits(2**1000)
 
+def euler018():
+    return euler_018_067('18')
+
+def euler_018_067(str_n):
+    lst = []
+    with open('data/'+str_n+'.txt') as f:
+       for l in f.readlines():
+           lst.append(map(int, l.split()))
+    for x in range(1, len(lst)):
+       lst[x][0] = lst[x-1][0]+lst[x][0]
+       for y in range(1, len(lst[x])-1):
+           lst[x][y] = max(lst[x-1][y-1], lst[x-1][y])+lst[x][y]
+       y = len(lst[x])-1
+       lst[x][y] = lst[x-1][y-1]+lst[x][y]
+    return max(lst[len(lst)-1])
+
 def euler020():
     return sum_of_digits(math.factorial(100))
 
 def euler056():
     return max(sum_of_digits(pow(x,y)) for x in range(2,101) for y in range(1,101))
 
+def euler067():
+    return euler_018_067('67')
+
 if __name__ == '__main__' :
     a = time.time()
-    print euler020()
+    print euler067()
     print "time elapsed: %f millisec" % ((time.time()-a)*1000)
 
