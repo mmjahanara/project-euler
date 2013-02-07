@@ -40,11 +40,20 @@ def euler013():
         lst = f.readlines()
     return str(reduce(lambda x,y: x+y, (int(x) for x in lst)))[:10]
 
+def euler015():
+    return math.factorial(40)/math.factorial(20)/math.factorial(20)
+    
+def euler016():
+    return sum_of_digits(2**1000)
+
+def euler020():
+    return sum_of_digits(math.factorial(100))
+
 def euler056():
     return max(sum_of_digits(pow(x,y)) for x in range(2,101) for y in range(1,101))
 
 if __name__ == '__main__' :
     a = time.time()
-    print euler056()
+    print euler020()
     print "time elapsed: %f millisec" % ((time.time()-a)*1000)
 
