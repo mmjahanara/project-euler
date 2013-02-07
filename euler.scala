@@ -1,3 +1,5 @@
+import java.math.BigInteger;
+
 object Euler {
     def gcd(a: Long, b: Long): Long = {
         if (a < b) gcd(b,a)
@@ -9,6 +11,11 @@ object Euler {
     def lcm(a: Long, b: Long)= {
         a*b/gcd(a,b)
     } 
+
+   def sumOfDigit(i: BigInteger): Int = {
+       val s = i.toString
+       s.map(_.toInt-48).reduce(_+_)
+   }
 
     def euler001() = {
       val rg = List.range(1,1000) 
@@ -38,9 +45,11 @@ object Euler {
       val text = scala.io.Source.fromFile("data/13.txt");
       text.getLines().map(new java.math.BigInteger(_)).reduce(_.add(_)).toString().take(10)
     }
+    def euler056() = {
+    }
     def main(args: Array[String]) {
         var a = System.currentTimeMillis()
-        println (euler013())
+        println (euler056())
         println ("time elapsed: " + (System.currentTimeMillis()-a) + " millisec")
     }
 }
