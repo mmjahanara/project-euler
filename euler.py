@@ -1,4 +1,5 @@
 import time
+import math
 
 def gcd(a,b):
     if (b == 0): return a
@@ -10,6 +11,9 @@ def gcd(a,b):
 # least common multiple
 def lcm(a,b):
     return a*b/gcd(a,b)
+
+def sum_of_digits(n):
+    return sum(int(x) for x in str(n))
 
 def euler002():
     a,b,c,sum = 1,1,2,0
@@ -36,8 +40,11 @@ def euler013():
         lst = f.readlines()
     return str(reduce(lambda x,y: x+y, (int(x) for x in lst)))[:10]
 
+def euler056():
+    return max(sum_of_digits(pow(x,y)) for x in range(2,101) for y in range(1,101))
+
 if __name__ == '__main__' :
     a = time.time()
-    print euler013()
+    print euler056()
     print "time elapsed: %f millisec" % ((time.time()-a)*1000)
 
