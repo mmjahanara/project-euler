@@ -65,6 +65,14 @@ def euler_018_067(str_n):
 def euler020():
     return sum_of_digits(math.factorial(100))
 
+def euler030():
+    return sum(x for x in range(2, 400000) if x == sum(int(y)**5 for y in str(x)))
+
+def euler037():
+    # https://en.wikipedia.org/wiki/List_of_prime_numbers#Two-sided_primes
+    two_sided_primes = '23, 37, 53, 73, 313, 317, 373, 797, 3137, 3797, 739397'
+    return sum(int(x) for x in two_sided_primes.split(','))
+
 def euler056():
     return max(sum_of_digits(pow(x,y)) for x in range(2,101) for y in range(1,101))
 
@@ -73,6 +81,6 @@ def euler067():
 
 if __name__ == '__main__' :
     a = time.time()
-    print euler067()
+    print euler037()
     print "time elapsed: %f millisec" % ((time.time()-a)*1000)
 
