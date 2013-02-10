@@ -1,6 +1,36 @@
 import time
 import math
 
+# calculates prime numbers not greater than m.
+# note that m must be at least 5
+def prime(m = 100):
+    yield 2
+    yield 3
+    size = (m-2)/3 # 6k+1, and 6k-1
+    if m%6 == 1: size += 1
+    lst = [True] * size
+    i = 0
+    while i < len(lst):
+       if lst[i]:
+          k   = i/2+1
+          num = 6*k-1 if (i%2==0) else 6*k+1
+          x = num+num
+          while (x <= m):
+             res = x%6
+             if res == 1:
+                lst[(x-2)/6*2+1]= False
+             elif res == 5:
+                lst[(x-2)/6*2] = False
+             x += num
+          yield num
+       i += 1
+
+def prime_iterator():
+  with open('data/primes1.txt') as f:
+    for l in f:
+      for j in (int(x) for x in l.split()):
+         yield j            
+
 def gcd(a,b):
     if (b == 0): return a
     while (a != b):
@@ -76,11 +106,28 @@ def euler037():
 def euler056():
     return max(sum_of_digits(pow(x,y)) for x in range(2,101) for y in range(1,101))
 
+def euler058():
+    primes = prime(50000000)
+    l = (set(primes))
+    nums = [3,5,7,9]
+    inc  = [10,12,14,16]
+    count_prime = 3 
+    count_num = 5
+    size = 3
+    while 10*count_prime >= count_num:
+        nums = [x+y for x,y in zip(nums, inc)]
+        inc  = [x+8 for x in inc]
+        count_num += 4
+        size += 2
+        count_prime += len(set(nums).intersection(l))
+        print "size: %d, nums: %s, count_prime: %d, count_num: %d, ratio: %f" % (size, nums, count_prime, count_num, count_prime/(count_num+0.0))
+    print size
+
 def euler067():
     return euler_018_067('67')
 
 if __name__ == '__main__' :
     a = time.time()
-    print euler037()
+    print euler058()
     print "time elapsed: %f millisec" % ((time.time()-a)*1000)
 
