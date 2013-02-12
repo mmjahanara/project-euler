@@ -1,35 +1,14 @@
 import time
 import math
+import decimal
 
-# calculates prime numbers not greater than m.
-# note that m must be at least 5
-def prime(m = 100):
-    yield 2
-    yield 3
-    size = (m-2)/3 # 6k+1, and 6k-1
-    if m%6 == 1: size += 1
-    lst = [True] * size
-    i = 0
-    while i < len(lst):
-       if lst[i]:
-          k   = i/2+1
-          num = 6*k-1 if (i%2==0) else 6*k+1
-          x = num+num
-          while (x <= m):
-             res = x%6
-             if res == 1:
-                lst[(x-2)/6*2+1]= False
-             elif res == 5:
-                lst[(x-2)/6*2] = False
-             x += num
-          yield num
-       i += 1
-
-def prime_iterator():
-  with open('data/primes1.txt') as f:
-    for l in f:
-      for j in (int(x) for x in l.split()):
-         yield j            
+def is_prime(n):
+   if (n%2 ==0): return False
+   i = 3
+   while i <= n**.5:
+      if (n%i == 0): return False
+      i += 2
+   return True
 
 def gcd(a,b):
     if (b == 0): return a
@@ -107,24 +86,37 @@ def euler056():
     return max(sum_of_digits(pow(x,y)) for x in range(2,101) for y in range(1,101))
 
 def euler058():
-    primes = prime(50000000)
-    l = (set(primes))
     nums = [3,5,7,9]
     inc  = [10,12,14,16]
     count_prime = 3 
     count_num = 5
     size = 3
+    t = 7
+    idx = 0
     while 10*count_prime >= count_num:
+        idx += 1
         nums = [x+y for x,y in zip(nums, inc)]
         inc  = [x+8 for x in inc]
         count_num += 4
         size += 2
-        count_prime += len(set(nums).intersection(l))
-        print "size: %d, nums: %s, count_prime: %d, count_num: %d, ratio: %f" % (size, nums, count_prime, count_num, count_prime/(count_num+0.0))
+        for x in nums:
+           if is_prime(x): count_prime += 1
     print size
+
 
 def euler067():
     return euler_018_067('67')
+
+def euler080():
+    decimal.getcontext().prec=102
+    s = 0
+    for i in range(2,101):
+        if i in [4,9,16,25,36,49,64,81,100]: continue
+        t = str(decimal.Decimal(i).sqrt())
+        dec = t[2:101]
+        s += sum(int(x) for x in dec)+ int(math.sqrt(i)) 
+    return s
+        
 
 if __name__ == '__main__' :
     a = time.time()
