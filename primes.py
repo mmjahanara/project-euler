@@ -24,7 +24,6 @@ def prime(m = 100):
 
 def prime_iterator():
   for file_number in range(1,41):
-    print ('data/primes'+str(file_number))
     with open('data/primes'+str(file_number)+'.txt') as f:
       for l in f:
         for j in (int(x) for x in l.split()):

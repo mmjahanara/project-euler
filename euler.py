@@ -103,7 +103,6 @@ def euler058():
            if is_prime(x): count_prime += 1
     print size
 
-
 def euler067():
     return euler_018_067('67')
 
