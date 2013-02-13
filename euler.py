@@ -116,9 +116,11 @@ def euler080():
         s += sum(int(x) for x in dec)+ int(math.sqrt(i)) 
     return s
         
+def euler093():
+    pass 
 
 if __name__ == '__main__' :
     a = time.time()
-    print euler058()
+    print euler093()
     print "time elapsed: %f millisec" % ((time.time()-a)*1000)
 
