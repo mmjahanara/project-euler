@@ -116,9 +116,6 @@ def euler080():
         s += sum(int(x) for x in dec)+ int(math.sqrt(i)) 
     return s
         
-def euler093():
-    pass 
-
 if __name__ == '__main__' :
     a = time.time()
     print euler093()
