@@ -74,6 +74,9 @@ def euler_018_067(str_n):
 def euler020():
     return sum_of_digits(math.factorial(100))
 
+def euler029():
+    return len(set(a**b for a in range(2,101) for b in range(2,101)))
+
 def euler030():
     return sum(x for x in range(2, 400000) if x == sum(int(y)**5 for y in str(x)))
 
@@ -118,6 +121,6 @@ def euler080():
         
 if __name__ == '__main__' :
     a = time.time()
-    print euler093()
+    print euler029()
     print "time elapsed: %f millisec" % ((time.time()-a)*1000)
 
