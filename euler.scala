@@ -43,13 +43,17 @@ object Euler {
       val text = scala.io.Source.fromFile("data/13.txt");
       text.getLines().map(BigInt(_)).reduce(_+_).toString().take(10)
     }
+    def euler029() = {
+      val r = List.range(2,101)
+      ((for { a <- r; b <- r} yield BigInt(a).pow(b)) toSet) size
+    }
     def euler056() = {
       val a = 1 to 100 
       (for {i <- a; j <- a} yield BigInt(i) pow j) map (sumOfDigit(_)) max
     }
     def main(args: Array[String]) {
         var a = System.currentTimeMillis()
-        println (euler056())
+        println (euler029())
         println ("time elapsed: " + (System.currentTimeMillis()-a) + " millisec")
     }
 }
