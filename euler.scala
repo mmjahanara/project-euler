@@ -10,10 +10,16 @@ object Euler {
         a*b/gcd(a,b)
     } 
 
-   def sumOfDigit(i: Number): Int = {
+    def sumOfDigit(i: Number): Int = {
        val s = i.toString
        s.map(_.toInt-48).reduce(_+_)
-   }
+    }
+ 
+    def fact(i: Int): BigInt = {
+      if (i == 0) 1
+      else if (i==1) 1
+      else List.range(2,i+1).map(BigInt(_)).reduce(_*_)
+    }
 
     def euler001() = {
       val rg = List.range(1,1000) 
@@ -43,6 +49,9 @@ object Euler {
       val text = scala.io.Source.fromFile("data/13.txt");
       text.getLines().map(BigInt(_)).reduce(_+_).toString().take(10)
     }
+    def euler016() = {
+      sumOfDigit(BigInt(2) pow 1000)
+    }
     def euler029() = {
       val r = List.range(2,101)
       ((for { a <- r; b <- r} yield BigInt(a).pow(b)) toSet) size
@@ -51,9 +60,19 @@ object Euler {
       val a = 1 to 100 
       (for {i <- a; j <- a} yield BigInt(i) pow j) map (sumOfDigit(_)) max
     }
+
+    def numNotBouncy(a: Int, e: Int, l: Int) = {
+      val d = Math.abs(a-e)
+      fact(d+l-2)/fact(l-2)/fact(d)
+    }
+    def euler113() = {
+      (for {a <- List.range(1,10);
+            e <- List.range(0,10);
+            l <- List.range(2,101)} yield numNotBouncy(a,e,l)).sum + 9
+    }
     def main(args: Array[String]) {
         var a = System.currentTimeMillis()
-        println (euler029())
+        println (euler113())
         println ("time elapsed: " + (System.currentTimeMillis()-a) + " millisec")
     }
 }
