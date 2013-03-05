@@ -73,9 +73,12 @@ object Euler {
             e <- List.range(0,10);
             l <- List.range(2,101)} yield numNotBouncy(a,e,l)).sum + 9
     }
+    def euler120() = {
+       List.range(3,1001).map(a => List.range(1,a).map(_*2*a%(a*a)).max).sum
+    }
     def main(args: Array[String]) {
         var a = System.currentTimeMillis()
-        println (euler030())
+        println (euler120())
         println ("time elapsed: " + (System.currentTimeMillis()-a) + " millisec")
     }
 }
