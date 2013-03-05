@@ -56,6 +56,9 @@ object Euler {
       val r = List.range(2,101)
       ((for { a <- r; b <- r} yield BigInt(a).pow(b)) toSet) size
     }
+    def euler030() = {
+      List.range(2,400000).filter(x=> x == x.toString.map(_.toInt-48).map(x=>x*x*x*x*x).sum).sum
+    }
     def euler056() = {
       val a = 1 to 100 
       (for {i <- a; j <- a} yield BigInt(i) pow j) map (sumOfDigit(_)) max
@@ -72,7 +75,7 @@ object Euler {
     }
     def main(args: Array[String]) {
         var a = System.currentTimeMillis()
-        println (euler113())
+        println (euler030())
         println ("time elapsed: " + (System.currentTimeMillis()-a) + " millisec")
     }
 }

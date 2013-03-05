@@ -118,9 +118,12 @@ def euler080():
         dec = t[2:101]
         s += sum(int(x) for x in dec)+ int(math.sqrt(i)) 
     return s
+
+def euler120():
+    return sum(max((2*n*a)%(a*a) for n in range(1,a/2+1)) for a in range(3,1001))
         
 if __name__ == '__main__' :
     a = time.time()
-    print euler029()
+    print euler120()
     print "time elapsed: %f millisec" % ((time.time()-a)*1000)
 
