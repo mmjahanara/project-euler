@@ -28,3 +28,22 @@ def prime_iterator():
       for l in f:
         for j in (int(x) for x in l.split()):
            yield j            
+
+def __calc_prime_divisors(n, x):
+    if (x*x > n) :
+       s = set()
+       s.add(n)
+       return s
+    elif (n%x == 0):
+       s =  __calc_prime_divisors(n/x, x)
+       s.add(x)
+       return s
+    else:
+       return __calc_prime_divisors(n, x+(1 if x==2 else 2)) 
+
+def get_prime_divisors(n):
+    return __calc_prime_divisors(n, 2) 
+
+def get_max_prime_divisor(n):
+    return max(get_prime_divisors(n))
+

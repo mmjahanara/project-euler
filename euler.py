@@ -10,6 +10,24 @@ def is_prime(n):
       i += 2
    return True
 
+def __calc_prime_divisors(n, x):
+    if (x*x > n) :
+       s = set()
+       s.add(n)
+       return s
+    elif (n%x == 0):
+       s =  __calc_prime_divisors(n/x, x)
+       s.add(x)
+       return s
+    else:
+       return __calc_prime_divisors(n, x+(1 if x==2 else 2)) 
+
+def get_prime_divisors(n):
+    return __calc_prime_divisors(n, 2) 
+
+def get_max_prime_divisor(n):
+    return max(get_prime_divisors(n))
+
 def gcd(a,b):
     if (b == 0): return a
     while (a != b):
@@ -32,6 +50,9 @@ def euler002():
       b = c+a
       c = a+b
     return sum
+
+def euler003():
+    return get_max_prime_divisor(600851475143) 
 
 def euler004():
     return max(filter(lambda x: str(x)==str(x)[::-1], (x*y for x in range(100,1000) for y in range(100, 1000)) ))
@@ -124,6 +145,6 @@ def euler120():
         
 if __name__ == '__main__' :
     a = time.time()
-    print euler120()
+    print euler003()
     print "time elapsed: %f millisec" % ((time.time()-a)*1000)
 
