@@ -2,6 +2,16 @@ import time
 import itertools as it
 import sys
 
+def expr_visitor(func):
+    stk = []
+    for x in a:
+      if x in ['+','-','*','/']:
+         a1,a2 = stk.pop(), stk.pop()
+         t = '('+str(a1)+x+str(a2)+')'
+         stk.append(t)
+      else: stk.append(x)
+    return stk[0]
+
 def print_expr(a):
     stk = []
     for x in a:
@@ -44,8 +54,7 @@ def has_solution(nu, x):
           pass
     return False
 
-if __name__ == '__main__':
-    a = time.time()
+def euler093():
     max = 0
     for n in it.combinations(range(1,10), 4):
         nu = list(n)
@@ -56,5 +65,9 @@ if __name__ == '__main__':
           max = x-1
           t = nu
         print n, x-1
-    print t
+    return t
+
+if __name__ == '__main__':
+    a = time.time()
+    print euler093()
     print "%f sec" % (time.time()-a)
