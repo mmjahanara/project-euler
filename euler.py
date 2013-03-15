@@ -120,7 +120,7 @@ def euler080():
     return s
 
 def euler120():
-    return sum(max((2*n*a)%(a*a) for n in range(1,a/2+1)) for a in range(3,1001))
+    return sum(max((2*n*a)%(a*a) for n in range(1,a)) for a in range(3,1001))
         
 if __name__ == '__main__' :
     a = time.time()
