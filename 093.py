@@ -2,16 +2,6 @@ import time
 import itertools as it
 import sys
 
-def print_expr(a):
-    stk = []
-    for x in a:
-      if x in ['+','-','*','/']:
-         a1,a2 = stk.pop(), stk.pop()
-         t = '('+str(a1)+x+str(a2)+')'
-         stk.append(t)
-      else: stk.append(x)
-    return stk[0]
-
 def eval_expr(a):
     stk = []
     for x in a:
@@ -32,14 +22,10 @@ def has_solution(nu, x):
         a3 = [t[0],t[1],t[2],q[0],q[1],t[3],q[2]]
         a4 = [t[0],t[1],t[2],t[3],q[0],q[1],q[2]]
         try:
-          if eval_expr(a1) == x: 
-             return True
-          if eval_expr(a2) == x: 
-             return True
-          if eval_expr(a3) == x:
-             return True
-          if eval_expr(a4) == x: 
-             return True
+          if eval_expr(a1) == x: return True
+          if eval_expr(a2) == x: return True
+          if eval_expr(a3) == x: return True
+          if eval_expr(a4) == x: return True
         except :
           pass
     return False
