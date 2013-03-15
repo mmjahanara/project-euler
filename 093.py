@@ -2,16 +2,6 @@ import time
 import itertools as it
 import sys
 
-def expr_visitor(func):
-    stk = []
-    for x in a:
-      if x in ['+','-','*','/']:
-         a1,a2 = stk.pop(), stk.pop()
-         t = '('+str(a1)+x+str(a2)+')'
-         stk.append(t)
-      else: stk.append(x)
-    return stk[0]
-
 def print_expr(a):
     stk = []
     for x in a:
