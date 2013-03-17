@@ -21,6 +21,20 @@ object Euler {
       else List.range(2,i+1).map(BigInt(_)).reduce(_*_)
     }
 
+    def __getPrimeFactors(n: BigInt, x: BigInt): List[BigInt] = {
+        if (x*x > n) List(n)
+        else if (n % x == 0) {
+           __getPrimeFactors(n/x, x) :+ x
+        }
+        else {
+           __getPrimeFactors(n, x+(if (x==2) 1 else 2)) 
+        }
+    }
+
+    def getPrimeFactors(n: BigInt): List[BigInt] = {
+        __getPrimeFactors(n, BigInt(2))
+    }
+
     def euler001() = {
       val rg = List.range(1,1000) 
       rg.filter(x => x%3==0 || x%5 ==0).reduce(_+_)
@@ -32,6 +46,9 @@ object Euler {
           a = b+c; b = c+a; c=a+b; 
       }
       sum
+    }
+    def euler003() = {
+        getPrimeFactors(BigInt("600851475143")).max
     }
     def euler004() = {
       val a = List.range(100,1000)
@@ -45,8 +62,12 @@ object Euler {
       val l = List.range(1,n+1)
       l.sum * l.sum - l.map(x=>x*x).sum
     }
+    def euler008() = {
+      val numbers = scala.io.Source.fromFile("data/008.txt").getLines().map(_.trim()).mkString("").map(_.toInt-48)
+      (for {i <- List.range(1,numbers.length-4)} yield numbers(i)*numbers(i+1)*numbers(i+2)*numbers(i+3)*numbers(i+4)) max
+    }
     def euler013() = {
-      val text = scala.io.Source.fromFile("data/13.txt");
+      val text = scala.io.Source.fromFile("data/13.txt")
       text.getLines().map(BigInt(_)).reduce(_+_).toString().take(10)
     }
     def euler016() = {
@@ -78,7 +99,7 @@ object Euler {
     }
     def main(args: Array[String]) {
         var a = System.currentTimeMillis()
-        println (euler120())
+        println (euler008())
         println ("time elapsed: " + (System.currentTimeMillis()-a) + " millisec")
     }
 }

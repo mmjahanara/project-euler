@@ -85,6 +85,11 @@ def euler006():
     l = range(1,n+1)
     return sum(l)*sum(l)-sum(x*x for x in l)
 
+def euler008():
+    with open('data/008.txt') as f:
+       s = ''.join([x.strip() for x in f.readlines()])
+    return max([int(s[i])*int(s[i+1])*int(s[i+2])*int(s[i+3])*int(s[i+4]) for i in range(1,len(s)-4)])
+
 def euler013():
     with open('data/13.txt', 'r') as f:
         lst = f.readlines()
@@ -122,6 +127,13 @@ def euler021():
         y = sum(get_all_proper_divisors(x))
         if n != x and n == y: s.add(n)
     return sum(s)
+
+def euler023():
+    s = set()
+    for combi in itertools.combinations_with_replacement(get_abundant_numbers(28123), 2):
+        s.add(combi[0]+combi[1])
+    t = set(range(1,28124))
+    return sum(t.difference(s))
 
 def euler029():
     return len(set(a**b for a in range(2,101) for b in range(2,101)))
@@ -171,17 +183,8 @@ def euler080():
 def euler120():
     return sum(max((2*n*a)%(a*a) for n in range(1,a)) for a in range(3,1001))
         
-def euler023():
-    s = set()
-    an = get_abundant_numbers(28123)	
-    for combi in itertools.combinations_with_replacement(an, 2):
-        s.add(combi[0]+combi[1])
-    t = set(range(1,28124))
-    
-    return sum(t.difference(s))
-
 if __name__ == '__main__' :
     a = time.time()
-    print euler023()
+    print euler008()
     print "time elapsed: %f millisec" % ((time.time()-a)*1000)
 
