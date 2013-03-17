@@ -1,6 +1,7 @@
 import time
 import math
 import decimal
+import itertools
 
 def is_prime(n):
    if (n%2 ==0): return False
@@ -34,8 +35,13 @@ def get_prime_divisors(n,  duplicate=False):
 def get_max_prime_divisor(n):
     return max(get_prime_divisors(n))
 
-def get_max_prime_divisor(n):
-    return max(get_prime_divisors(n))
+def get_all_proper_divisors(n):
+    s = set([1])
+    prime_divisors = get_prime_divisors(n, duplicate=True)
+    for num_factors in range(1,len(prime_divisors)):
+        for combi in itertools.combinations(prime_divisors, num_factors):
+            s.add(reduce(lambda x,y: x*y, combi))
+    return s
 
 def gcd(a,b):
     if (b == 0): return a
@@ -103,6 +109,14 @@ def euler_018_067(str_n):
 
 def euler020():
     return sum_of_digits(math.factorial(100))
+    
+def euler021():
+    s = set()
+    for n in range(1,10000):
+        x = sum(get_all_proper_divisors(n))
+        y = sum(get_all_proper_divisors(x))
+        if n != x and n == y: s.add(n)
+    return sum(s)
 
 def euler029():
     return len(set(a**b for a in range(2,101) for b in range(2,101)))
@@ -154,7 +168,6 @@ def euler120():
         
 if __name__ == '__main__' :
     a = time.time()
-    #print euler003()
-    print get_prime_divisors(240, duplicate=True)
+    print euler021()
     print "time elapsed: %f millisec" % ((time.time()-a)*1000)
 
