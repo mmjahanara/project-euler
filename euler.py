@@ -11,7 +11,6 @@ def is_prime(n):
       i += 2
    return True
 
-
 def __calc_prime_divisors(n, x, duplicate=False):
     if (x*x > n) :
        if duplicate:
@@ -42,6 +41,12 @@ def get_all_proper_divisors(n):
         for combi in itertools.combinations(prime_divisors, num_factors):
             s.add(reduce(lambda x,y: x*y, combi))
     return s
+
+def is_abundant(n):
+    return sum(get_all_proper_divisors(n)) > n 
+
+def get_abundant_numbers(n):
+    return filter(is_abundant, range(12,n+1))
 
 def gcd(a,b):
     if (b == 0): return a
@@ -166,8 +171,17 @@ def euler080():
 def euler120():
     return sum(max((2*n*a)%(a*a) for n in range(1,a)) for a in range(3,1001))
         
+def euler023():
+    s = set()
+    an = get_abundant_numbers(28123)	
+    for combi in itertools.combinations_with_replacement(an, 2):
+        s.add(combi[0]+combi[1])
+    t = set(range(1,28124))
+    
+    return sum(t.difference(s))
+
 if __name__ == '__main__' :
     a = time.time()
-    print euler021()
+    print euler023()
     print "time elapsed: %f millisec" % ((time.time()-a)*1000)
 
