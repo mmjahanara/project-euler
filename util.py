@@ -1,3 +1,11 @@
+def is_prime(n):
+   if (n%2 ==0): return False
+   i = 3
+   while i <= n**.5:
+      if (n%i == 0): return False
+      i += 2
+   return True
+
 # calculates prime numbers not greater than m.
 # note that m must be at least 5
 def prime(m = 100):
@@ -51,4 +59,32 @@ def get_prime_divisors(n,  duplicate=False):
 
 def get_max_prime_divisor(n):
     return max(get_prime_divisors(n))
+
+def get_all_proper_divisors(n):
+    s = set([1])
+    prime_divisors = get_prime_divisors(n, duplicate=True)
+    for num_factors in range(1,len(prime_divisors)):
+        for combi in itertools.combinations(prime_divisors, num_factors):
+            s.add(reduce(lambda x,y: x*y, combi))
+    return s
+
+def is_abundant(n):
+    return sum(get_all_proper_divisors(n)) > n 
+
+def get_abundant_numbers(n):
+    return filter(is_abundant, range(12,n+1))
+
+def gcd(a,b):
+    if (b == 0): return a
+    while (a != b):
+       if (a < b): a,b = b,a
+       a = a-b 
+    return a
+
+# least common multiple
+def lcm(a,b):
+    return a*b/gcd(a,b)
+
+def sum_of_digits(n):
+    return sum(int(x) for x in str(n))
 
