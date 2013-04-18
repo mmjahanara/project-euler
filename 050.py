@@ -1,5 +1,5 @@
 import time
-from util import prime
+from util import prime, bin_idx
 
 def euler050():
     m = 1000000
@@ -19,13 +19,6 @@ def euler050():
     print max_i, max_j
     return max_p
             
-def bin_idx(lst, n, left, right):
-    idx = (left + right) / 2
-    if lst[idx] == n: return idx
-    if left == right: return -1
-    if lst[idx] < n:  return bin_idx(lst, n, idx+1, right)
-    else: return bin_idx(lst, n, 0, idx-1)
-
 if __name__ == '__main__' :
     a = time.time()
     print euler050()

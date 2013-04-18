@@ -88,3 +88,11 @@ def lcm(a,b):
 def sum_of_digits(n):
     return sum(int(x) for x in str(n))
 
+def bin_idx(lst, n, left, right):
+    idx = (left + right) / 2
+    if lst[idx] == n: return idx
+    if left == right: return -1
+    if lst[idx] < n:  return bin_idx(lst, n, idx+1, right)
+    else: return bin_idx(lst, n, 0, idx-1)
+
+
