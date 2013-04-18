@@ -43,7 +43,7 @@ def test_not_bouncy_numbers_first_last_length():
 if __name__ == '__main__':
     #test_is_bouncy()
     #test_not_bouncy_numbers_first_last_length()
-    print e113()
     a = time.time()
+    print e113()
     print "%f sec" % (time.time()-a)
 

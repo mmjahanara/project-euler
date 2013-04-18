@@ -1,4 +1,6 @@
 object Euler {
+    val fibs: Stream[BigInt] = BigInt(0) #:: BigInt(1) #:: fibs.zip(fibs.tail).map(n => n._1 + n._2)
+
     def gcd(a: Long, b: Long): Long = {
         if (a < b) gcd(b,a)
         else if (b == 0)  a
@@ -70,8 +72,17 @@ object Euler {
       val text = scala.io.Source.fromFile("data/13.txt")
       text.getLines().map(BigInt(_)).reduce(_+_).toString().take(10)
     }
+    def euler015() =  {
+      fact(40)/fact(20)/fact(20)
+    }
     def euler016() = {
       sumOfDigit(BigInt(2) pow 1000)
+    }
+    def euler020() = {
+      sumOfDigit(fact(100))
+    }
+    def euler025() = {
+        fibs.zip(Stream.from(0)) dropWhile (x => x._1.toString.length < 1000) head
     }
     def euler029() = {
       val r = List.range(2,101)
@@ -79,6 +90,9 @@ object Euler {
     }
     def euler030() = {
       List.range(2,400000).filter(x=> x == x.toString.map(_.toInt-48).map(x=>x*x*x*x*x).sum).sum
+    }
+    def euler042() = {
+      scala.io.Source.fromFile("data/words.txt").getLines().toList.apply(0).split(',').map(x => x.stripPrefix("\"").stripSuffix("\"")).map(x=>(x.map(_.toInt-64) sum)).filter(((2 to 30).scanLeft(1)(_+_)).contains(_)).length
     }
     def euler048()= {
       val s = (1 to 1000).map(x=>BigInt(x).pow(x.toInt)).sum.toString
@@ -103,7 +117,7 @@ object Euler {
     }
     def main(args: Array[String]) {
         var a = System.currentTimeMillis()
-        println (euler048())
+        println (euler042())
         println ("time elapsed: " + (System.currentTimeMillis()-a) + " millisec")
     }
 }
