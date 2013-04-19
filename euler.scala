@@ -81,6 +81,10 @@ object Euler {
     def euler020() = {
       sumOfDigit(fact(100))
     }
+    def euler022() = {
+      scala.io.Source.fromFile("data/022.txt").getLines().toList.apply(0).split(",").map(_.stripPrefix("\"").stripSuffix("\"")).sorted.
+            zip(Stream.from(1)).map(x=>BigInt(x._1.map(_.toInt-64).sum)*BigInt(x._2)).sum
+    }
     def euler025() = {
         fibs.zip(Stream.from(0)) dropWhile (x => x._1.toString.length < 1000) head
     }
@@ -92,7 +96,9 @@ object Euler {
       List.range(2,400000).filter(x=> x == x.toString.map(_.toInt-48).map(x=>x*x*x*x*x).sum).sum
     }
     def euler042() = {
-      scala.io.Source.fromFile("data/words.txt").getLines().toList.apply(0).split(',').map(x => x.stripPrefix("\"").stripSuffix("\"")).map(x=>(x.map(_.toInt-64) sum)).filter(((2 to 30).scanLeft(1)(_+_)).contains(_)).length
+      scala.io.Source.fromFile("data/words.txt").getLines().toList.apply(0).split(',').
+            map(x => x.stripPrefix("\"").stripSuffix("\"")).map(x=>(x.map(_.toInt-64) sum)).
+            filter(((2 to 30).scanLeft(1)(_+_)).contains(_)).length
     }
     def euler048()= {
       val s = (1 to 1000).map(x=>BigInt(x).pow(x.toInt)).sum.toString
@@ -117,7 +123,7 @@ object Euler {
     }
     def main(args: Array[String]) {
         var a = System.currentTimeMillis()
-        println (euler042())
+        println (euler022())
         println ("time elapsed: " + (System.currentTimeMillis()-a) + " millisec")
     }
 }
