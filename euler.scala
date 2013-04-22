@@ -42,12 +42,7 @@ object Euler {
       rg.filter(x => x%3==0 || x%5 ==0).reduce(_+_)
     }
     def euler002() = {
-      var a = 1; var b = 1; var c = 2; var sum = 0
-      while (c <= 4000000) {
-          sum = sum +c
-          a = b+c; b = c+a; c=a+b; 
-      }
-      sum
+      fibs.takeWhile(x=>x<=4000000).filter(x=>x%2==0).sum
     }
     def euler003() = {
         getPrimeFactors(BigInt("600851475143")).max
@@ -117,7 +112,7 @@ object Euler {
     }
     def main(args: Array[String]) {
         var a = System.currentTimeMillis()
-        println (euler042())
+        println (euler002())
         println ("time elapsed: " + (System.currentTimeMillis()-a) + " millisec")
     }
 }
