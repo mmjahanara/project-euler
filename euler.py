@@ -85,6 +85,12 @@ def euler037():
     two_sided_primes = '23, 37, 53, 73, 313, 317, 373, 797, 3137, 3797, 739397'
     return sum(int(x) for x in two_sided_primes.split(','))
 
+def euler047():
+    i = 100
+    while(len(get_prime_divisors(i))!=4 or len(get_prime_divisors(i+1))!=4 or len(get_prime_divisors(i+2))!=4 or len(get_prime_divisors(i+3))!=4):
+        i += 1
+    return i
+
 def euler048():
     return str(sum(map(lambda x: x**x, range(1,1001))))[-10:]
 
@@ -127,6 +133,6 @@ def euler120():
         
 if __name__ == '__main__' :
     a = time.time()
-    print euler005()
+    print euler047()
     print "time elapsed: %f millisec" % ((time.time()-a)*1000)
 

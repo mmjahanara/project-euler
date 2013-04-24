@@ -95,6 +95,11 @@ object Euler {
             map(x => x.stripPrefix("\"").stripSuffix("\"")).map(x=>(x.map(_.toInt-64) sum)).
             filter(((2 to 30).scanLeft(1)(_+_)).contains(_)).length
     }
+    def euler047() = {
+      def t(y: Int) = getPrimeFactors(BigInt(y)).toSet
+      def s(y: Int):Boolean = t(y).size==4 && t(y+1).size==4 && t(y+2).size==4 && t(y+3).size==4
+      Stream.from(100) dropWhile(!s(_)) head
+    }
     def euler048()= {
       val s = (1 to 1000).map(x=>BigInt(x).pow(x.toInt)).sum.toString
       s.slice(s.length-10, s.length)
@@ -118,7 +123,7 @@ object Euler {
     }
     def main(args: Array[String]) {
         var a = System.currentTimeMillis()
-        println (euler002())
+        println (euler047())
         println ("time elapsed: " + (System.currentTimeMillis()-a) + " millisec")
     }
 }
