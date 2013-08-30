@@ -1,4 +1,3 @@
-from collections import Counter
 def e059():
     with open('data/cipher1.txt') as f:
         ln = f.readline()
@@ -18,6 +17,7 @@ def e059():
                 upp = dcstr.upper()
                 cntr = Counter(upp)
                 if (upp.find('THE') < 0): continue
+                if (upp.find('AND') < 0): continue
                 if (upp.find('OF') < 0): continue
                 if (upp.find('IN') < 0): continue
                 fout.write(dcstr+'\n')
