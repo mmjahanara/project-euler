@@ -8,7 +8,7 @@ def e059():
 
     with open('data/dict_en.txt') as f:
         ln = f.readlines()
-    words = {x[:-1].upper() for x in ln}
+    words = {x.strip().upper() for x in ln}
 
     rg = range(ord('a'), ord('z')+1)
 
