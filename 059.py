@@ -1,3 +1,4 @@
+import time
 import re
 
 def e059():
@@ -17,11 +18,12 @@ def e059():
             for c in rg:
                 key = ([a,b,c]*fac)[:1201]
                 decipher = ''.join([chr(x[0]^x[1]) for x in zip(key, cipher)])
-                up_list = re.sub(r'\W', ' ', decipher.upper()).split()
-                x = [1 if w in words else 0 for w in up_list]
-                if sum(x) < .8 * len(up_list): continue
+                up_set = set(re.sub(r'\W', ' ', decipher.upper()).split())
+                if len(up_set.intersection(words)) < .5 * len(up_set): continue
                 print decipher 
                 print sum(map(ord, decipher))
 
 if __name__ == '__main__':
+    a = time.time()
     e059()
+    print "time elapsed: %f millisec" % ((time.time()-a)*1000)

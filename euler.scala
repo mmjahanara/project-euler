@@ -77,7 +77,7 @@ object Euler {
       sumOfDigit(fact(100))
     }
     def euler022() = {
-      scala.io.Source.fromFile("data/022.txt").getLines().toList.apply(0).split(",").map(_.stripPrefix("\"").stripSuffix("\"")).sorted.
+      scala.io.Source.fromFile("data/022.txt").getLines().toList(0).split(",").map(_.stripPrefix("\"").stripSuffix("\"")).sorted.
             zip(Stream.from(1)).map(x=>BigInt(x._1.map(_.toInt-64).sum)*BigInt(x._2)).sum
     }
     def euler025() = {
@@ -91,7 +91,7 @@ object Euler {
       List.range(2,400000).filter(x=> x == x.toString.map(_.toInt-48).map(x=>x*x*x*x*x).sum).sum
     }
     def euler042() = {
-      scala.io.Source.fromFile("data/words.txt").getLines().toList.apply(0).split(',').
+      scala.io.Source.fromFile("data/words.txt").getLines().toList(0).split(',').
             map(x => x.stripPrefix("\"").stripSuffix("\"")).map(x=>(x.map(_.toInt-64) sum)).
             filter(((2 to 30).scanLeft(1)(_+_)).contains(_)).length
     }
@@ -108,12 +108,28 @@ object Euler {
       val a = 1 to 100 
       (for {i <- a; j <- a} yield BigInt(i) pow j) map (sumOfDigit(_)) max
     }
-
-    def numNotBouncy(a: Int, e: Int, l: Int) = {
-      val d = Math.abs(a-e)
-      fact(d+l-2)/fact(l-2)/fact(d)
+    def euler059() = {
+      def decrypt(cipher: Array[Int], key: List[Int]): String = {
+        val k = (1 to cipher.length).map(x=>key((x-1)%key.length))
+        return cipher.zip(k).map(x=>x._1 ^ x._2).map(_.toChar).mkString("")
+      }
+      val cipher = scala.io.Source.fromFile("data/cipher1.txt").getLines().toList(0).split(",").map(_.toInt);
+      val words  = scala.io.Source.fromFile("data/dict_en.txt").getLines().map(_.trim.toUpperCase).toSet
+      val rg = 'a' to 'z'
+      val resStr = (for {a <- rg; b <- rg; c <- rg} yield decrypt(cipher, List(a.toInt,b.toInt,c.toInt))).filter(
+         x =>  { 
+           var wordSet = x.replaceAll("\\W+", " ").trim.split(" ").map(_.toUpperCase).toSet
+           (wordSet.intersect(words).size > (wordSet.size*0.5)) 
+         } 
+      )
+      resStr.map(x => (x, x.toList.map(_.toInt).sum))
     }
+
     def euler113() = {
+      def numNotBouncy(a: Int, e: Int, l: Int) = {
+        val d = Math.abs(a-e)
+        fact(d+l-2)/fact(l-2)/fact(d)
+      }
       (for {a <- List.range(1,10);
             e <- List.range(0,10);
             l <- List.range(2,101)} yield numNotBouncy(a,e,l)).sum + 9
@@ -123,7 +139,7 @@ object Euler {
     }
     def main(args: Array[String]) {
         var a = System.currentTimeMillis()
-        println (euler047())
+        println (euler059())
         println ("time elapsed: " + (System.currentTimeMillis()-a) + " millisec")
     }
 }
