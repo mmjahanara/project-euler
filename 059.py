@@ -1,7 +1,7 @@
 import time
 import re
 
-def e059():
+def euler059():
     with open('data/cipher1.txt') as f:
         ln = f.readline()
     cipher = map(int, ln.split(','))
@@ -25,5 +25,5 @@ def e059():
 
 if __name__ == '__main__':
     a = time.time()
-    e059()
+    euler059()
     print "time elapsed: %f millisec" % ((time.time()-a)*1000)
