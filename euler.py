@@ -80,6 +80,17 @@ def euler029():
 def euler030():
     return sum(x for x in range(2, 400000) if x == sum(int(y)**5 for y in str(x)))
 
+
+def change(money, coins):
+     if len(coins)==0: return 0
+     elif len(coins) == 1: return 1 if money / coins[0] * coins[0] == money else 0 
+     else:
+         x = money / coins[0]
+         return sum(change(money-i*coins[0], coins[1:]) for i in range(0,x+1))
+
+def euler031():
+    return change(200, [200,100,50,20,10,5,2,1])
+
 def euler037():
     # https://en.wikipedia.org/wiki/List_of_prime_numbers#Two-sided_primes
     two_sided_primes = '23, 37, 53, 73, 313, 317, 373, 797, 3137, 3797, 739397'
@@ -133,6 +144,6 @@ def euler120():
         
 if __name__ == '__main__' :
     a = time.time()
-    print euler047()
+    print euler031()
     print "time elapsed: %f millisec" % ((time.time()-a)*1000)
 

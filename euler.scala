@@ -90,6 +90,18 @@ object Euler {
     def euler030() = {
       List.range(2,400000).filter(x=> x == x.toString.map(_.toInt-48).map(x=>x*x*x*x*x).sum).sum
     }
+    def euler031(): Int = {
+       def change(money: Int, coins: List[Int]): Int = {
+         if (coins.isEmpty) 0
+         else if (coins.size == 1) {
+           if (money / coins(0) * coins(0) == money) 1 else 0 
+         } else { 
+           val x = money / coins(0)
+           List.range(0,x+1).map(i => change(money-i*coins(0), coins.tail)).sum
+         }
+       }
+       change(200, List(200,100,50,20,10,5,2,1))
+    }
     def euler042() = {
       scala.io.Source.fromFile("data/words.txt").getLines().toList(0).split(',').
             map(x => x.stripPrefix("\"").stripSuffix("\"")).map(x=>(x.map(_.toInt-64) sum)).
@@ -139,7 +151,7 @@ object Euler {
     }
     def main(args: Array[String]) {
         var a = System.currentTimeMillis()
-        println (euler059())
+        println (euler031())
         println ("time elapsed: " + (System.currentTimeMillis()-a) + " millisec")
     }
 }
