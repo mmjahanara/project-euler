@@ -1,3 +1,5 @@
+import itertools
+
 def is_prime(n):
    if (n%2 ==0): return False
    i = 3
@@ -95,4 +97,23 @@ def bin_idx(lst, n, left, right):
     if lst[idx] < n:  return bin_idx(lst, n, idx+1, right)
     else: return bin_idx(lst, n, 0, idx-1)
 
+class Fraction:
+    def __init__(self, n, denominator=1):
+        g = gcd(n, denominator)
+        self.denominator = denominator/g
+        self.numerator = n/g
+    def __add__(self, other):
+        new_denominator = self.denominator * other.denominator
+        new_numerator   = self.numerator * other.denominator + other.numerator * self.denominator
+        g = gcd(new_denominator, new_numerator)
+        return Fraction(new_numerator/g, new_denominator/g)
+    def __mul__(self, other):
+        new_denominator = self.denominator * other.denominator
+        new_numerator   = self.numerator * other.numerator
+        g = gcd(new_denominator, new_numerator)
+        return Fraction(new_numerator/g, new_denominator/g)
+    def __div__(self, other):
+        return self * Fraction(other.denominator, other.numerator)
+    def __repr__(self):
+        return "%d/%d" %(self.numerator, self.denominator)
 
