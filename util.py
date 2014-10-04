@@ -95,7 +95,7 @@ def bin_idx(lst, n, left, right):
     if lst[idx] == n: return idx
     if left == right: return -1
     if lst[idx] < n:  return bin_idx(lst, n, idx+1, right)
-    else: return bin_idx(lst, n, 0, idx-1)
+    else: return bin_idx(lst, n, l, idx-1)
 
 class Fraction:
     def __init__(self, n, denominator=1):
