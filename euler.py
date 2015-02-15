@@ -80,14 +80,6 @@ def euler029():
 def euler030():
     return sum(x for x in range(2, 400000) if x == sum(int(y)**5 for y in str(x)))
 
-def change(money, coins):
-     if len(coins)==0: return 0
-     elif len(coins) == 1: return 1 if money / coins[0] * coins[0] == money else 0 
-     else: return sum(change(money-i*coins[0], coins[1:]) for i in range(0, money/coins[0]+1))
-
-def euler031():
-    return change(200, [200,100,50,20,10,5,2,1])
-
 def check032(x,y,z):
     a,b,c = str(x), str(y), str(z)
     d = a+b+c
