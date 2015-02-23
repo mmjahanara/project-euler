@@ -30,10 +30,7 @@ def step(n):
                         b[d][new_idx] = 0
                     b[d][new_idx] += a[left][idx]
         a = b
-
-        for x in b:
-            if key in x:
-                s_all += x[key]
+        s_all += sum(x[key] for x in b if key in x)
     return s_all
 
 
