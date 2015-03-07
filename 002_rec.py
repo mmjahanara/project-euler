@@ -1,13 +1,11 @@
 import time
 
+def fib(a, b, c, s, end):
+    if c > end: return s
+    return fib(b+c, c+b+c, c+b+b+c+c, s+c, end)
+
 def euler002():
-    a, b, c, s= 1, 1, 2, 0
-    while (c <= 4000000):
-      s += c
-      a = b+c
-      b = c+a
-      c = a+b
-    return s
+    return fib(1, 1, 2, 0, 4000000)
 
 if __name__ == '__main__' :
     a = time.time()
