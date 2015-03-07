@@ -1,15 +1,6 @@
 import time, math, decimal, itertools
 from util import *
 
-def euler002():
-    a,b,c,sum = 1,1,2,0
-    while (c <= 4000000):
-      sum += c
-      a = b+c
-      b = c+a
-      c = a+b
-    return sum
-
 def euler003():
     return get_max_prime_divisor(600851475143) 
 

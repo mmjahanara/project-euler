@@ -1,1 +1,5 @@
-Python solutions for some of the Project Euler (http://projecteuler.net) questions 
+Project-Euler
+=============
+
+Python solutions for some of the [Project Euler](http://projecteuler.net) questions 
+
