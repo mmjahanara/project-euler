@@ -13,11 +13,6 @@ def euler006():
     l = range(1,n+1)
     return sum(l)*sum(l)-sum(x*x for x in l)
 
-def euler008():
-    with open('data/008.txt') as f:
-       s = ''.join([x.strip() for x in f.readlines()])
-    return max([int(s[i])*int(s[i+1])*int(s[i+2])*int(s[i+3])*int(s[i+4]) for i in range(1,len(s)-4)])
-
 def euler013():
     with open('data/13.txt', 'r') as f:
         lst = f.readlines()
